@@ -1,0 +1,33 @@
+setenv CLICOLOR YES
+set history = 5000
+# Looks like "MachineName /foo/bar> "
+set prompt = '%{\033[33m%}%m %{\033[36m%}%~%{\033[0m%}%# '
+set correct = 'all'
+set savehist = 5000 merge lock
+set autolist
+set complete = 'igncase'
+set promptchars = '>%'
+set listjobs
+
+bindkey -k up history-search-backward
+bindkey -k down history-search-forward
+
+#alias precmd 'printf "\033]0;$cwd\007"'
+
+# Make ls -l show human sizes without having to use -h
+alias ls ls -h
+
+# http://stackoverflow.com/questions/14966102/minimal-typing-command-line-calculator-tcsh-vs-bash?rq=1
+alias C 'echo '\''\!*'\'' |tr -d '\'',\042-\047'\'' |bc -l'
+
+# Mac-exclusive stuff
+if ( `uname` == "Darwin" ) then
+  alias plaincopy 'pbpaste -Prefer txt | tee pbcopy; echo'
+  # Path for MacPorts-installed stuff
+  setenv PATH /opt/local/bin:/opt/local/sbin:$PATH
+  alias mmount 'sudo mount -o resvport 192.168.50.7:/assets /assets'
+  # Fix forward-delete
+  # See comments at http://hints.macworld.com/article.php?story=20050525040921189
+  bindkey "\e[3~" delete-char
+endif 
+
