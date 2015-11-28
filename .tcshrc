@@ -1,3 +1,5 @@
+# Garrett's .tcshrc. Yes, I use TCSH instead of whatever you use. Sorry.
+
 setenv CLICOLOR YES
 set history = 5000
 # Looks like "MachineName /foo/bar> "
@@ -19,6 +21,9 @@ alias ls ls -h
 
 # http://stackoverflow.com/questions/14966102/minimal-typing-command-line-calculator-tcsh-vs-bash?rq=1
 alias C 'echo '\''\!*'\'' |tr -d '\'',\042-\047'\'' |bc -l'
+
+# Make XZ use all cores and compress its best
+setenv XZ_OPT "--best -T `sysctl -n hw.ncpu`"
 
 # Mac-exclusive stuff
 if ( `uname` == "Darwin" ) then
