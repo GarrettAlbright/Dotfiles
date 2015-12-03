@@ -12,8 +12,6 @@ bindkey -k down history-search-forward
 
 #alias precmd 'printf "\033]0;$cwd\007"'
 
-setenv LYNX_CFG "~/.lynx.cfg"
-
 # Make ls -l show human sizes without having to use -h
 alias ls ls -h
 
