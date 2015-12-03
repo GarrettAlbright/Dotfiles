@@ -1,7 +1,5 @@
 setenv CLICOLOR YES
 set history = 5000
-# Looks like "MachineName /foo/bar> "
-set prompt = '%{\033[33m%}%m %{\033[36m%}%~%{\033[0m%}%# '
 set correct = 'all'
 set savehist = 5000 merge lock
 set autolist
@@ -22,8 +20,10 @@ alias ls ls -h
 # http://stackoverflow.com/questions/14966102/minimal-typing-command-line-calculator-tcsh-vs-bash?rq=1
 alias C 'echo '\''\!*'\'' |tr -d '\'',\042-\047'\'' |bc -l'
 
-# Mac-exclusive stuff
 if ( `uname` == "Darwin" ) then
+  # Mac-exclusive stuff
+  # Looks like "MachineName /foo/bar> "
+  set prompt = '%{\033[33m%}%m %{\033[36m%}%~%{\033[0m%}%# '
   alias plaincopy 'pbpaste -Prefer txt | tee pbcopy; echo'
   # Path for MacPorts-installed stuff
   setenv PATH /opt/local/bin:/opt/local/sbin:$PATH
@@ -31,5 +31,9 @@ if ( `uname` == "Darwin" ) then
   # Fix forward-delete
   # See comments at http://hints.macworld.com/article.php?story=20050525040921189
   bindkey "\e[3~" delete-char
+else
+  # BSD-exclusive stuff
+  # Prompt is same as on Mac, but machine name is reverse video
+  set prompt = '%S%{\033[33m%}%m%s %{\033[36m%}%~%{\033[0m%}%# '
 endif 
 
