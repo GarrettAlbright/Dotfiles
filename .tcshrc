@@ -23,6 +23,8 @@ alias C 'echo '\''\!*'\'' |tr -d '\'',\042-\047'\'' |bc -l'
 # Make XZ use all cores and compress its best
 setenv XZ_OPT "--best -T `sysctl -n hw.ncpu`"
 
+setenv NETHACKOPTIONS "NAME=Pointage,NOAUTOPICKUP,COLOR"
+
 if ( `uname` == "Darwin" ) then
   # Mac-exclusive stuff
   # Looks like "MachineName /foo/bar> "
