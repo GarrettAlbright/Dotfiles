@@ -14,6 +14,9 @@ bindkey -k down history-search-forward
 
 #alias precmd 'printf "\033]0;$cwd\007"'
 
+# Create an alias that echoes a bell for use in scripts and such
+alias bell echo ""
+
 # Make ls -l show human sizes without having to use -h
 alias ls ls -h
 
