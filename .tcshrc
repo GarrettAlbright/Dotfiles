@@ -12,7 +12,9 @@ set listjobs
 bindkey -k up history-search-backward
 bindkey -k down history-search-forward
 
-#alias precmd 'printf "\033]0;$cwd\007"'
+# Show current directory in window title
+# TODO: Percent escaping other chars necessary?
+alias cwdcmd 'echo -n "]7;file:`pwd|sed s/\ /\%20/g`"'
 
 # Create an alias that echoes a bell for use in scripts and such
 alias bell echo ""
