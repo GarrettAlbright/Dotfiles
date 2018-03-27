@@ -25,6 +25,9 @@ alias ls ls -h
 # http://stackoverflow.com/questions/14966102/minimal-typing-command-line-calculator-tcsh-vs-bash?rq=1
 alias C 'echo '\''\!*'\'' |tr -d '\'',\042-\047'\'' |bc -l'
 
+# Alias for the CLI PHP binary inside of the MAMP collection
+alias mampphp /Applications/MAMP/bin/php/php7.1.8/bin/php 
+
 # Make XZ use all cores and compress its best
 setenv XZ_OPT "--best -T `sysctl -n hw.ncpu`"
 
