@@ -40,7 +40,6 @@ if ( `uname` == "Darwin" ) then
   alias plaincopy 'pbpaste -Prefer txt | tee pbcopy; echo'
   # Path for MacPorts-installed stuff
   setenv PATH /opt/local/bin:/opt/local/sbin:$PATH
-  alias mmount 'sudo mount -o resvport 192.168.50.7:/assets /assets'
   # Fix forward-delete
   # See comments at http://hints.macworld.com/article.php?story=20050525040921189
   bindkey "\e[3~" delete-char
