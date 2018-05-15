@@ -3,7 +3,7 @@
 setenv CLICOLOR YES
 set history = 5000
 set correct = cmd 
-set savehist = 5000 merge lock
+set savehist = (5000 merge)
 set autolist
 set complete = 'igncase'
 set promptchars = '>%'
@@ -16,6 +16,9 @@ bindkey -k down history-search-forward
 # Show current directory in window title
 # TODO: Percent escaping other chars necessary?
 alias cwdcmd 'echo -n "]7;file:`pwd|sed s/\ /\%20/g`"'
+
+# Really seriously save the history after every command
+alias postcmd 'history -S'
 
 # Create an alias that echoes a bell for use in scripts and such
 alias bell echo ""
