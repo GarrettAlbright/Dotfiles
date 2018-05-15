@@ -50,3 +50,4 @@ else
   set prompt = '%S%{\033[33m%}%m%s %{\033[36m%}%~%{\033[0m%}%# '
 endif 
 
+alias spg 'swift package generate-xcodeproj --output='`pwd | rev | cut -d '/' -f 1 | rev | tr -d ' '`.xcodeproj''
