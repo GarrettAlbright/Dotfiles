@@ -8,6 +8,7 @@ set autolist
 set complete = 'igncase'
 set promptchars = '>%'
 set listjobs
+set backslash_quote
 
 bindkey -k up history-search-backward
 bindkey -k down history-search-forward
