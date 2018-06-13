@@ -33,7 +33,7 @@ alias C 'echo '\''\!*'\'' |tr -d '\'',\042-\047'\'' |bc -l'
 alias mampphp /Applications/MAMP/bin/php/php7.1.8/bin/php 
 
 # Make XZ use all cores and compress its best
-setenv XZ_OPT "--best -T `sysctl -n hw.ncpu`"
+setenv XZ_OPT '--best -T `sysctl -n hw.ncpu`'
 
 setenv NETHACKOPTIONS "NAME=Pointage,NOAUTOPICKUP,COLOR"
 
@@ -43,7 +43,7 @@ if ( `uname` == "Darwin" ) then
   set prompt = '%{\033[33m%}%m %{\033[36m%}%~%{\033[0m%}%# '
   alias plaincopy 'pbpaste -Prefer txt | tee pbcopy; echo'
   # Path for MacPorts-installed stuff
-  setenv PATH /opt/local/bin:/opt/local/sbin:$PATH
+  setenv PATH "/opt/local/bin:/opt/local/sbin:$PATH"
   # Fix forward-delete
   # See comments at http://hints.macworld.com/article.php?story=20050525040921189
   bindkey "\e[3~" delete-char
