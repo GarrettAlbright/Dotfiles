@@ -42,24 +42,32 @@ setenv NETHACKOPTIONS "NAME=Pointage,NOAUTOPICKUP,COLOR"
 
 if ( `uname` == "Darwin" ) then
   # Mac-exclusive stuff
+
   # Looks like "MachineName /foo/bar> "
   set prompt = '%{\033[33m%}%m %{\033[36m%}%~%{\033[0m%}%# '
   alias plaincopy 'pbpaste -Prefer txt | tee pbcopy; echo'
+
   # Path for MacPorts-installed stuff
   setenv PATH "/opt/local/bin:/opt/local/sbin:$PATH"
+
   # Fix forward-delete
   # See comments at http://hints.macworld.com/article.php?story=20050525040921189
   bindkey "\e[3~" delete-char
+
+  # Quickly bring dev stuff up or down
   alias webup "sudo port load nginx; sudo port load mariadb-10.1-server; sudo port load php72-fpm"
   alias webdn "sudo port unload nginx; sudo port unload mariadb-10.1-server; sudo port unload php72-fpm"
+
   # swiftenv stuff
   setenv SWIFTENV_ROOT "$HOME/.swiftenv"
   setenv PATH "$SWIFTENV_ROOT/bin:$PATH"
   eval "`swiftenv init - | sed -e 's/export PATH=/setenv PATH /'`"
+
   # Alias to quickly regenerate Xcode project files
   alias spg 'swift package generate-xcodeproj --output=`pwd | rev | cut -d "/" -f 1 | rev | tr -d " "`.xcodeproj'
 else
   # BSD-exclusive stuff
+
   # Prompt is same as on Mac, but machine name is reverse video
   set prompt = '%S%{\033[33m%}%m%s %{\033[36m%}%~%{\033[0m%}%# '
 endif 
