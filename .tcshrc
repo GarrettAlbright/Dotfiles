@@ -70,5 +70,11 @@ else
 
   # Prompt is same as on Mac, but machine name is reverse video
   set prompt = '%S%{\033[33m%}%m%s %{\033[36m%}%~%{\033[0m%}%# '
+
+  # Start tsch automatically
+  # https://stackoverflow.com/questions/27613209/how-to-automatically-start-tmux-on-ssh-session
+  if ( "$prompt" != "" && ! $?TMUX && "$SSH_CONNECTION" != "" ) then
+    tmux attach-session -t $USER || tmux new-session -s $USER
+  endif
 endif 
 
