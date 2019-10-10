@@ -62,4 +62,10 @@ else
   # Same prompt except machine name is inversed 
   PROMPT='%F{b}%K{y}%m%k%f%(0?.. %K{r}%F{b}%?%f%k) %F{c}%~%f%# '
 
+  # Start tmux automatically
+  # https://stackoverflow.com/questions/27613209/how-to-automatically-start-tmux-on-ssh-session
+  if [ -z "$TMUX" ] && [ -n "$SSH_CONNECTION" ] ; then
+    tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+  fi
+
 fi
