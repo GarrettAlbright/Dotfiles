@@ -4,4 +4,4 @@
 !.gitignore
 !.lynxrc
 !.zshrc
-
+!.zsh/plugins/zsh-syntax-highlighting
