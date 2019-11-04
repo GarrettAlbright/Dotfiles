@@ -1,20 +1,24 @@
 HISTSIZE=1000
 HISTFILE=~/.zsh_history
 SAVEHIST=1000
+# Make sure history is shared between terminals
 setopt SHARE_HISTORY
-# setopt INC_APPEND_HISTORY
+
+# Do color output on ls & tab completion lists
+# https://superuser.com/questions/290500/zsh-completion-colors-and-os-x
+export CLICOLOR=1
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # Make history search work more like it did on tcsh
 # (Search with current buffer; put cursor at end of line)
 # https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
-
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
-
 
 # Make ls -l show human sizes by default
 alias ls="ls -h"
@@ -26,6 +30,22 @@ alias agc="ag -G '\.css$'"
 
 # Make XZ use all cores and compress its best
 export XZ_OPT='--best -T `sysctl -n hw.ncpu`'
+
+# Case insensitive completion
+# https://scriptingosx.com/2019/07/moving-to-zsh-part-5-completions/
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+
+# Command option completion
+autoload -Uz compinit && compinit
+
+# Calculator
+# https://stackoverflow.com/a/15915233
+
+calculator () {
+  echo "$*" | tr -d \"-\', | bc -l
+}
+
+alias C='noglob calculator'
 
 if [ `uname` = "Darwin" ] ; then
 
