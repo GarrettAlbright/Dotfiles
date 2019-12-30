@@ -3,5 +3,6 @@
 !.agignore
 !.gitignore
 !.lynxrc
+!.vimrc
 !.zshrc
 !.zsh/plugins/zsh-syntax-highlighting
