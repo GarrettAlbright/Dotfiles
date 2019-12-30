@@ -71,10 +71,13 @@ if [ `uname` = "Darwin" ] ; then
   # Convert WAVs (legally obtained, thank you) to AAC/M4As
   # When needed, re-implement this as a ZSH function
   # alias wav2m4a 'find . -name \*.wav -print | sed "s/.wav\\$//" | xargs -I @ -P 4 tcsh -c "/opt/local/bin/ffmpeg -i \\"@.wav\\" -loglevel warning -b:a 256k \\"@.m4a\\" && echo \\"Finished converting @.wav\\" && rm \\"@.wav\\""'
+  wav2m4a () {
+    find . -name \*.wav -print | sed 's/.wav$//' | sed "s/'/\\\'/" | xargs -I @ -P 4 zsh -c "/opt/local/bin/ffmpeg -i \"@.wav\" -loglevel warning -b:a 256k \"@.m4a\" && echo \"Finished converting @.wav\" && rm \"@.wav\""
+  }
   
   # Convert FLACs to AAC/M4As
   flac2m4a() {
-    find . -name \*.flac -print | sed 's/.flac$//' | sed "s/'/\\\'/" | xargs -I @ -P 4 zsh -c "/opt/local/bin/ffmpeg -i \"@.flac\" -loglevel warning -b:a 256k \"@.m4a\" && echo \"Finished converting @.flac\" && rm \"@.flac\""
+    find . -name \*.flac -print | sed 's/.flac$//' | sed "s/'/\\\'/" | xargs -I @ -P 4 zsh -c "/opt/local/bin/ffmpeg -i \"@.flac\" -loglevel warning -b:a 256k -vn \"@.m4a\" && echo \"Finished converting @.flac\" && rm \"@.flac\""
   }
 
 else
