@@ -1,6 +1,6 @@
-HISTSIZE=1000
+HISTSIZE=10000
 HISTFILE=~/.zsh_history
-SAVEHIST=1000
+SAVEHIST=10000
 # Make sure history is shared between terminals
 setopt SHARE_HISTORY
 
@@ -22,6 +22,11 @@ bindkey "^[[B" down-line-or-beginning-search
 
 # Make ls -l show human sizes by default
 alias ls="ls -h"
+
+# Make `history` show all history entries, not just the last 15
+# (so `history|ag foo` works as expected again)
+# https://stackoverflow.com/questions/26846738/zsh-history-is-too-short
+alias history="history 1"
 
 # Alias for ag-ing only inside certain files
 alias agp="ag -G '\.php$'"
