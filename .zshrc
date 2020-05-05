@@ -17,8 +17,6 @@ autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search
-bindkey "^[[B" down-line-or-beginning-search
 
 # Make ls -l show human sizes by default
 alias ls="ls -h"
@@ -52,7 +50,12 @@ calculator () {
 
 alias C='noglob calculator'
 
+# Do some Mac-specific stuff if we're on my Mac
 if [ `uname` = "Darwin" ] ; then
+
+  # Key binding for searching through history (see above)
+  bindkey "^[[A" up-line-or-beginning-search
+  bindkey "^[[B" down-line-or-beginning-search
 
   # Set prompt - Yellow machine name, inverse red error if applicable, blue path, prompt
   PROMPT='%F{y}%m%f%(0?.. %K{r}%F{b}%?%f%k) %F{c}%~%f%# '
@@ -86,6 +89,10 @@ if [ `uname` = "Darwin" ] ; then
   }
 
 else
+
+  # Key binding for searching through history (see above)
+  bindkey "$key[Up]" up-line-or-beginning-search
+  bindkey "$key[Down]" down-line-or-beginning-search
 
   # Same prompt except machine name is inversed 
   PROMPT='%F{b}%K{y}%m%k%f%(0?.. %K{r}%F{b}%?%f%k) %F{c}%~%f%# '
