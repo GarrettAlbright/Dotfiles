@@ -32,7 +32,7 @@ alias agj="ag -G '\.js$'"
 alias agc="ag -G '\.css$'"
 
 # Make XZ use all cores and compress its best
-export XZ_OPT='--best -T `sysctl -n hw.ncpu`'
+export XZ_OPT="--best -T `sysctl -n hw.ncpu`"
 
 # Case insensitive completion
 # https://scriptingosx.com/2019/07/moving-to-zsh-part-5-completions/
