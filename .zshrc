@@ -103,10 +103,18 @@ else
     tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
   fi
 
+  # On OpenBSD, "vi" won't automatically alias to "vim"
+  if (( $+commands[vim] )) ; then
+    alias vi="vim"
+  fi
+
 fi
 
+# Load zsh-syntax-highlighting wherever it might be hiding
 if [ -e ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] ; then
   source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [ -e /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] ; then
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 elif [ -e /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] ; then
   source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
