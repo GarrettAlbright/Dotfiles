@@ -88,6 +88,9 @@ if [ `uname` = "Darwin" ] ; then
     find . -name \*.flac -print | sed 's/.flac$//' | sed "s/'/\\\'/" | xargs -I @ -P 4 zsh -c "/opt/local/bin/ffmpeg -i \"@.flac\" -loglevel warning -b:a 256k -vn \"@.m4a\" && echo \"Finished converting @.flac\" && rm \"@.flac\""
   }
 
+  # Nethack
+  export NETHACKOPTIONS="color,name:Contrabandit,fullscreen"
+
 else
 
   # Key binding for searching through history (see above)
