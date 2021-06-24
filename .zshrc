@@ -94,8 +94,8 @@ if [ `uname` = "Darwin" ] ; then
 else
 
   # Key binding for searching through history (see above)
-  bindkey "$key[Up]" up-line-or-beginning-search
-  bindkey "$key[Down]" down-line-or-beginning-search
+  bindkey "^[[A" up-line-or-beginning-search
+  bindkey "^[[B" down-line-or-beginning-search
 
   # Same prompt except machine name is inversed 
   PROMPT='%F{b}%K{y}%m%k%f%(0?.. %K{r}%F{b}%?%f%k) %F{c}%~%f%# '
