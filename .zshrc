@@ -50,6 +50,16 @@ calculator () {
 
 alias C='noglob calculator'
 
+find_motd () {
+  # Show the Ubuntu MOTD if found
+  if [ -f /run/motd.dynamic ] ; then
+    cat /run/motd.dynamic
+  # Show the BSD MOTD if found
+  elif [ -f /etc/motd ] ; then
+    cat /etc/motd
+  fi
+}
+
 # Do some Mac-specific stuff if we're on my Mac
 if [ `uname` = "Darwin" ] ; then
 
@@ -103,7 +113,7 @@ else
   # Start tmux automatically
   # https://stackoverflow.com/questions/27613209/how-to-automatically-start-tmux-on-ssh-session
   if [ -z "$TMUX" ] && [ -n "$SSH_CONNECTION" ] ; then
-    tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+    tmux attach-session -t ssh_tmux \; set-buffer "find_motd" \; paste-buffer || tmux new-session -s ssh_tmux \; set-buffer "find_motd" \; paste-buffer
   fi
 
   # On OpenBSD, "vi" won't automatically alias to "vim"
