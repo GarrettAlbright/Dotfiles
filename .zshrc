@@ -92,7 +92,7 @@ if [ `uname` = "Darwin" ] ; then
   wav2m4a () {
     find . -name \*.wav -print | sed 's/.wav$//' | sed "s/'/\\\'/" | xargs -I @ -P 4 zsh -c "/opt/local/bin/ffmpeg -i \"@.wav\" -loglevel warning -b:a 256k \"@.m4a\" && echo \"Finished converting @.wav\" && rm \"@.wav\""
   }
-  
+
   # Convert FLACs to AAC/M4As
   flac2m4a() {
     find . -name \*.flac -print | sed 's/.flac$//' | sed "s/'/\\\'/" | xargs -I @ -P 4 zsh -c "/opt/local/bin/ffmpeg -i \"@.flac\" -loglevel warning -b:a 256k -vn \"@.m4a\" && echo \"Finished converting @.flac\" && rm \"@.flac\""
@@ -107,13 +107,13 @@ else
   bindkey "^[[A" up-line-or-beginning-search
   bindkey "^[[B" down-line-or-beginning-search
 
-  # Same prompt except machine name is inversed 
+  # Same prompt except machine name is inversed
   PROMPT='%F{b}%K{y}%m%k%f%(0?.. %K{r}%F{b}%?%f%k) %F{c}%~%f%# '
 
   # Start tmux automatically
   # https://stackoverflow.com/questions/27613209/how-to-automatically-start-tmux-on-ssh-session
   if [ -z "$TMUX" ] && [ -n "$SSH_CONNECTION" ] ; then
-    tmux attach-session -t ssh_tmux \; set-buffer "find_motd" \; paste-buffer || tmux new-session -s ssh_tmux \; set-buffer "find_motd" \; paste-buffer
+    tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
   fi
 
   # On OpenBSD, "vi" won't automatically alias to "vim"
