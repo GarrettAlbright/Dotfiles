@@ -18,6 +18,10 @@ autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
+# Key binding for searching through history
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
+
 # Make ls -l show human sizes by default
 alias ls="ls -h"
 
@@ -43,11 +47,9 @@ autoload -Uz compinit && compinit
 
 # Calculator
 # https://stackoverflow.com/a/15915233
-
 calculator () {
   echo "$*" | tr -d \"-\', | bc -l
 }
-
 alias C='noglob calculator'
 
 find_motd () {
@@ -62,10 +64,6 @@ find_motd () {
 
 # Do some Mac-specific stuff if we're on my Mac
 if [ `uname` = "Darwin" ] ; then
-
-  # Key binding for searching through history (see above)
-  bindkey "^[[A" up-line-or-beginning-search
-  bindkey "^[[B" down-line-or-beginning-search
 
   # Set prompt - Yellow machine name, inverse red error if applicable, blue path, prompt
   PROMPT='%F{y}%m%f%(0?.. %K{r}%F{b}%?%f%k) %F{c}%~%f%# '
@@ -88,7 +86,6 @@ if [ `uname` = "Darwin" ] ; then
 
   # Convert WAVs (legally obtained, thank you) to AAC/M4As
   # When needed, re-implement this as a ZSH function
-  # alias wav2m4a 'find . -name \*.wav -print | sed "s/.wav\\$//" | xargs -I @ -P 4 tcsh -c "/opt/local/bin/ffmpeg -i \\"@.wav\\" -loglevel warning -b:a 256k \\"@.m4a\\" && echo \\"Finished converting @.wav\\" && rm \\"@.wav\\""'
   wav2m4a () {
     find . -name \*.wav -print | sed 's/.wav$//' | sed "s/'/\\\'/" | xargs -I @ -P 4 zsh -c "/opt/local/bin/ffmpeg -i \"@.wav\" -loglevel warning -b:a 256k \"@.m4a\" && echo \"Finished converting @.wav\" && rm \"@.wav\""
   }
@@ -103,24 +100,19 @@ if [ `uname` = "Darwin" ] ; then
 
 else
 
-  # Key binding for searching through history (see above)
-  bindkey "^[[A" up-line-or-beginning-search
-  bindkey "^[[B" down-line-or-beginning-search
-
   # Same prompt except machine name is inversed
   PROMPT='%F{b}%K{y}%m%k%f%(0?.. %K{r}%F{b}%?%f%k) %F{c}%~%f%# '
-
-  # Start tmux automatically
-  # https://stackoverflow.com/questions/27613209/how-to-automatically-start-tmux-on-ssh-session
-  if [ -z "$TMUX" ] && [ -n "$SSH_CONNECTION" ] ; then
-    tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
-  fi
 
   # On OpenBSD, "vi" won't automatically alias to "vim"
   if (( $+commands[vim] )) ; then
     alias vi="vim"
   fi
 
+  # Start tmux automatically
+  # https://stackoverflow.com/questions/27613209/how-to-automatically-start-tmux-on-ssh-session
+  if [ -z "$TMUX" ] && [ -n "$SSH_CONNECTION" ] ; then
+    tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+  fi
 fi
 
 # Load zsh-syntax-highlighting wherever it might be hiding
