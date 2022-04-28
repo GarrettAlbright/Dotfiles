@@ -48,6 +48,11 @@ calculator () {
   echo "$*" | tr -d \"-\', | bc -l
 }
 
+# Switch into new directory after creation
+mkcd () {
+  mkdir -p "$1" && cd "$1"
+}
+
 alias C='noglob calculator'
 
 # Do some Mac-specific stuff if we're on my Mac
@@ -60,8 +65,9 @@ if [ `uname` = "Darwin" ] ; then
   # Set prompt - Yellow machine name, inverse red error if applicable, blue path, prompt
   PROMPT='%F{y}%m%f%(0?.. %K{r}%F{b}%?%f%k) %F{c}%~%f%# '
 
-  # Path for MacPorts-installed stuff
-  export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+  # Path for MacPorts-installed stuff,
+  # plus stuff installed with Composer and Python
+  export PATH="/opt/local/bin:/opt/local/sbin:/Users/albright/Library/Python/3.9/bin:/Users/albright/.composer/vendor/bin:$PATH"
 
   # Quickly bring dev stuff up or down
   alias webup="sudo port load nginx; sudo port load mariadb-10.1-server; sudo port load php72-fpm"
