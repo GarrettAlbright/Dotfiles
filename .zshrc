@@ -51,11 +51,6 @@ calculator () {
   echo "$*" | tr -d \"-\', | bc -l
 }
 
-# Switch into new directory after creation
-mkcd () {
-  mkdir -p "$1" && cd "$1"
-}
-
 alias C='noglob calculator'
 
 find_motd () {
@@ -78,28 +73,12 @@ if [ `uname` = "Darwin" ] ; then
   # plus stuff installed with Composer and Python
   export PATH="/opt/local/bin:/opt/local/sbin:/Users/albright/Library/Python/3.9/bin:/Users/albright/.composer/vendor/bin:$PATH"
 
-  # Quickly bring dev stuff up or down
-  alias webup="sudo port load nginx; sudo port load mariadb-10.1-server; sudo port load php72-fpm"
-  alias webdn="sudo port unload nginx; sudo port unload mariadb-10.1-server; sudo port unload php72-fpm"
-
-  # swiftenv stuff
-  # export SWIFTENV_ROOT="$HOME/.swiftenv"
-  # export PATH="$SWIFTENV_ROOT/bin:$PATH"
-  # Below might still need to be ported to zsh
-  # eval "`swiftenv init - | sed -e 's/export PATH=/setenv PATH /'`"
-
-  # Alias to quickly regenerate Xcode project files
-  alias spg='swift package generate-xcodeproj --output=`pwd | rev | cut -d "/" -f 1 | rev | tr -d " "`.xcodeproj'
-
-  # Convert WAVs (legally obtained, thank you) to AAC/M4As
-  # When needed, re-implement this as a ZSH function
-  wav2m4a () {
-    find . -name \*.wav -print | sed 's/.wav$//' | sed "s/'/\\\'/" | xargs -I @ -P 4 zsh -c "/opt/local/bin/ffmpeg -i \"@.wav\" -loglevel warning -b:a 256k \"@.m4a\" && echo \"Finished converting @.wav\" && rm \"@.wav\""
-  }
-
-  # Convert FLACs to AAC/M4As
-  flac2m4a() {
-    find . -name \*.flac -print | sed 's/.flac$//' | sed "s/'/\\\'/" | xargs -I @ -P 4 zsh -c "/opt/local/bin/ffmpeg -i \"@.flac\" -loglevel warning -b:a 256k -vn \"@.m4a\" && echo \"Finished converting @.flac\" && rm \"@.flac\""
+  # Invoke Streamlink with the URL in the clipboard
+  sl() {
+    # Use an explicit quality setting if it was passed; otherwise default
+    # to 480p
+    # https://zsh.sourceforge.io/Doc/Release/Expansion.html#Parameter-Expansion
+    pbpaste | xargs -I '@' streamlink '@' ${1:?480p}
   }
 
   # Nethack
