@@ -78,7 +78,7 @@ if [ `uname` = "Darwin" ] ; then
     # Use an explicit quality setting if it was passed; otherwise default
     # to 480p
     # https://zsh.sourceforge.io/Doc/Release/Expansion.html#Parameter-Expansion
-    pbpaste | xargs -I '@' streamlink '@' ${1:?480p}
+    pbpaste | xargs -I '@' streamlink '@' ${1-480p}
   }
 
   # Nethack
