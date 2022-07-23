@@ -81,6 +81,17 @@ if [ `uname` = "Darwin" ] ; then
     pbpaste | xargs -I '@' streamlink '@' ${1-480p}
   }
 
+  # Same for yt-dlp
+  dl() {
+    # YouTube format 18 is best for putting on my phone IMO
+    pbpaste | xargs -I '@' yt-dlp -f ${1-18} --paths "~/Videos" "@"
+  }
+
+  # Get available formats for the clipboard video for yt-dlp
+  dlf() {
+    pbpaste | xargs -I '@' yt-dlp -F "@"
+  }
+
   # Nethack
   export NETHACKOPTIONS="color,name:Contrabandit,fullscreen"
 
