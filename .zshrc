@@ -19,8 +19,12 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
 # Key binding for searching through history
+# "^[[A" and "^[[B" are Mac; "^[OA" and "^[OB" are leeenucks
+# https://stackoverflow.com/a/62118006/11023
 bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[OA" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
+bindkey "^[OB" down-line-or-beginning-search
 
 # Make ls -l show human sizes by default
 alias ls="ls -h"
