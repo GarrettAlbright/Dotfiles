@@ -75,7 +75,7 @@ if [ `uname` = "Darwin" ] ; then
 
   # Path for MacPorts-installed stuff,
   # plus stuff installed with Composer and Python
-  export PATH="/opt/local/bin:/opt/local/sbin:/Users/albright/Library/Python/3.9/bin:/Users/albright/.composer/vendor/bin:$PATH"
+  export PATH="/opt/local/bin:/opt/local/sbin:/Users/albright/Library/Python/3.10/bin:/Users/albright/.composer/vendor/bin:$PATH"
 
   # Invoke Streamlink with the URL in the clipboard
   sl() {
