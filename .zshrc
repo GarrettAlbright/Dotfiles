@@ -123,4 +123,6 @@ elif [ -e /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 elif [ -e /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] ; then
   source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [ -e /usr/pkg/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] ; then
+  source /usr/pkg/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
