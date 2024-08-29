@@ -114,6 +114,10 @@ else
   if [ -z "$TMUX" ] && [ -n "$SSH_CONNECTION" ] ; then
     tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
   fi
+
+  if [ `uname` = "NetBSD" ] ; then
+    export PATH="/sbin:/usr/sbin:/usr/X11R7/bin:/usr/pkg/bin:/usr/pkg/sbin:/usr/pkg/games:/usr/local/sbin:$PATH"
+  fi
 fi
 
 # Load zsh-syntax-highlighting wherever it might be hiding
