@@ -67,6 +67,13 @@ find_motd () {
   fi
 }
 
+# Generate password. Pass a length (10 by default)
+pw() {
+  local char=${1:-10}
+  local chardouble=$((char * 2))
+  head -c $chardouble /dev/urandom | base64 | tr "+/" "-_" | cut -c "-$char"
+}
+
 # Do some Mac-specific stuff if we're on my Mac
 if [ `uname` = "Darwin" ] ; then
 
