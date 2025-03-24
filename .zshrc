@@ -127,15 +127,5 @@ else
   fi
 fi
 
-# Load zsh-syntax-highlighting wherever it might be hiding
-if [ -e /usr/local/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ] ; then
-  source /usr/local/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-elif [ -e ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] ; then
-  source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-elif [ -e /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] ; then
-  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-elif [ -e /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] ; then
-  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-elif [ -e /usr/pkg/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] ; then
-  source /usr/pkg/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+source .zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source .zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh

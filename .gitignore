@@ -5,4 +5,4 @@
 !.lynxrc
 !.vimrc
 !.zshrc
-!.zsh/plugins/zsh-syntax-highlighting
+!.zsh/plugins/*
