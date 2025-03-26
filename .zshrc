@@ -127,5 +127,5 @@ else
   fi
 fi
 
-source .zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source .zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source ~/.zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
